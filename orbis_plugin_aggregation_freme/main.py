@@ -19,8 +19,9 @@ class Main(AggregationBaseClass):
         lang = {self.config['aggregation']['service']['language']} or 'en'
         args = {"language": lang, "dataset": "dbpedia", "mode": "all"}
         service_url = self.get_service_url()
-        data = {'text': item['corpus']}
-        logger.info(data)
+        data = item['corpus']
+        logger.debug(f"FREME plugin query for: '{data}')")
+
         try:
             response = requests.post(service_url, 
                 data=data, 
@@ -52,13 +53,15 @@ class Main(AggregationBaseClass):
     def map_item(self, item):
         if "taIdentRef" not in item:
             return None
-
+        
         item["key"] = item["taIdentRef"]
         item["surfaceForm"] = item["nif:anchorOf"]
         item = self.get_type(item)
         
         item["document_start"] = int(item["beginIndex"])
         item["document_end"] = int(item["endIndex"])
+
+        logger.debug(f"key: '{item['key']}', entity_type: '{item['entity_type']}', surfaceForm: '{item['surfaceForm']}', document_start: '{item['document_start']}', document_end: '{item['document_end']}'")
         return item
 
     def get_type(self, item):
@@ -76,7 +79,6 @@ class Main(AggregationBaseClass):
 
     def get_service_url(self):
         lang = self.get_lang_from_config()
-        logger.info(list(lang)[0])
         args = {"language": lang, "dataset": "dbpedia", "mode": "all"}
         service_url = "https://api.freme-project.eu/current/e-entity/freme-ner/documents?{}".format(urllib.parse.urlencode(args))
         return service_url
