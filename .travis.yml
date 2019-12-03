@@ -6,6 +6,10 @@ install:
   - python setup.py install
   - pip install pytest 
   - pip install codecov
+  - git clone https://github.com/orbis-eval/orbis_eval.git;
+  - cd orbis_eval;
+  - python setup.py install;
+  - cd ..;
 script:
   - pytest
 after_success:

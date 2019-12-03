@@ -11,4 +11,4 @@ def test_get_lang_from_config():
             }
         }        
     }    
-    assert Main.get_lang_from_config(freme) == "de";
+    assert Main.get_lang_from_config(freme) == "en";
