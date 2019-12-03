@@ -10,6 +10,7 @@ install:
   - cd orbis_eval;
   - python setup.py install;
   - cd ..;
+  - mkdir orbis-eval;
 script:
   - pytest
 after_success:
