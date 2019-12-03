@@ -3,14 +3,16 @@ python:
   - 3.6
   - 3.7
 install:
-  - python setup.py install
-  - pip install pytest 
-  - pip install codecov
+  - mkdir ~/orbis-eval;
+  
   - git clone https://github.com/orbis-eval/orbis_eval.git;
   - cd orbis_eval;
   - python setup.py install;
   - cd ..;
-  - mkdir orbis-eval;
+
+  - python setup.py install
+  - pip install pytest 
+  - pip install codecov  
 script:
   - pytest
 after_success:
