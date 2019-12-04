@@ -3,8 +3,9 @@ python:
   - 3.6
   - 3.7
 install:
-  - mkdir ~/orbis-eval;
-  
+  - svn checkout --trust-server-cert --non-interactive https://github.com/orbis-eval/orbis_eval/trunk/orbis_eval/data ~/orbis-eval
+  - echo "~/orbis-eval" > ~/.orbis-eval.txt
+
   - git clone https://github.com/orbis-eval/orbis_eval.git;
   - cd orbis_eval;
   - python setup.py install;
