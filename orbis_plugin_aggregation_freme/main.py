@@ -16,8 +16,6 @@ logger = logging.getLogger(__name__)
 class Main(AggregationBaseClass):
 
     def query(self, item):
-        lang = {self.config['aggregation']['service']['language']} or 'en'
-        args = {"language": lang, "dataset": "dbpedia", "mode": "all"}
         service_url = self.get_service_url()
         data = item['corpus']
         logger.debug(f"FREME plugin query for: '{data}')")
