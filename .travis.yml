@@ -11,6 +11,11 @@ install:
   - python setup.py install;
   - cd ..;
 
+  - git clone https://github.com/orbis-eval/orbis_plugin_aggregation_dbpedia_entity_types.git;
+  - cd orbis_plugin_aggregation_dbpedia_entity_types;
+  - python setup.py install;
+  - cd ..;
+
   - python setup.py install
   - pip install pytest 
   - pip install codecov  
