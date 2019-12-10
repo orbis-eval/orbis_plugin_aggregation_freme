@@ -18,7 +18,8 @@ install:
 
   - python setup.py install
   - pip install pytest 
-  - pip install codecov  
+  - pip install codecov
+  - pip install requests-mock
 script:
   - pytest
 after_success:
