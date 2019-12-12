@@ -6,7 +6,7 @@ import urllib.parse
 
 from orbis_eval import app
 from orbis_eval.core.base import AggregationBaseClass
-
+from orbis_plugin_aggregation_freme import types
 from orbis_plugin_aggregation_dbpedia_entity_types import Main as dbpedia_entity_types
 
 import logging
@@ -63,15 +63,12 @@ class Main(AggregationBaseClass):
         return item
 
     def get_type(self, item):
-        taClassRef = item["taClassRef"]            
-        if 'http://nerd.eurecom.fr/ontology#Organization' == taClassRef:
-            item["entity_type"] = 'Organization'
-        elif 'http://nerd.eurecom.fr/ontology#Location' == taClassRef:
-            item["entity_type"] = 'Place'
-        elif 'http://nerd.eurecom.fr/ontology#Person' == taClassRef:
-            item["entity_type"] = 'Person'
-        else:
+        taClassRef = item["taClassRef"]         
+        if taClassRef in types.nerd:
+            item["entity_type"] = types.nerd[taClassRef]
+        else:    
             item["entity_type"] = 'NoType'
+
         item["entity_type"] = dbpedia_entity_types.normalize_entity_type(item["entity_type"])            
         return item
 
