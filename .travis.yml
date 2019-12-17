@@ -17,10 +17,11 @@ install:
   - cd ..;
 
   - python setup.py install
+  - pip install pytest-cov
   - pip install pytest 
   - pip install codecov
   - pip install requests-mock
 script:
-  - pytest
+  - pytest --cov-report term --cov=orbis_plugin_aggregation_freme
 after_success:
   - codecov
