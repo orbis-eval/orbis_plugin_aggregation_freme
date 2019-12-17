@@ -13,8 +13,8 @@ class TestMain(unittest.TestCase):
         self.config = {
             "aggregation": {
                 "service": {
-                    "language": "de",
-                    "location": "web"
+                    "location": "web",
+                    "language": "de"
                 },
                 "input": {
                     "data_set": {
@@ -27,7 +27,7 @@ class TestMain(unittest.TestCase):
         self.rucksack = Rucksack(self.config)
         self.main = Main(rucksack=self.rucksack)
 
-    def test_get_lang_from_config(self):
+    def test_get_undefined_lang_from_config(self):
         self.assertEqual(self.main.get_lang_from_config(), "de")
 
     def test_get_service_url(self):	
@@ -86,6 +86,16 @@ class TestMain(unittest.TestCase):
     def test_map_entities_none(self):
         item = self.main.map_entities(None, None)
         self.assertEqual(item, None)
+
+    def test_map_entities(self):
+        with open('tests/test_query_response.json') as json_file:
+            response = json.load(json_file)
+        with open('tests/test_map_entities_expected-item.json') as json_file:
+            expected_item = json.load(json_file)            
+
+        item = self.main.map_entities(response, {})
+
+        self.assertEqual(item, expected_item)
 
     @requests_mock.Mocker()
     def test_query(self, requests_mock):
