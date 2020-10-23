@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import requests
-import html
 import urllib.parse
 
-from orbis_eval import app
 from orbis_eval.core.base import AggregationBaseClass
 from orbis_plugin_aggregation_freme import types
 from orbis_plugin_aggregation_dbpedia_entity_types import Main as dbpedia_entity_types
