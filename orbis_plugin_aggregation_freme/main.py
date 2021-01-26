@@ -5,7 +5,7 @@ import urllib.parse
 
 from orbis_eval.core.base import AggregationBaseClass
 from orbis_plugin_aggregation_freme import types
-from orbis_plugin_aggregation_dbpedia_entity_types import Main as dbpedia_entity_types
+from orbis_eval.plugins.orbis_plugin_aggregation_dbpedia_entity_types import Main as dbpedia_entity_types
 
 import logging
 logger = logging.getLogger(__name__)
